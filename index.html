@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Predicting March Madness - EECS 349</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/bootswatch.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="icon" 
+      type="image/png" 
+      href="img/basketballlogo.png">
+  </head>
+  <body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="#top" class="navbar-brand">
+            <img src="img/basketballlogo.png" height="26" width="30">
+            Predicting March Madness
+          </a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#overview">Overview</a>
+            </li>
+            <li>
+              <a href="#data">Data</a>
+            </li>
+            <li>
+              <a href="#experiment">Experiment</a>
+            </li>
+            <li>
+              <a href="#results">Results</a>
+            </li>
+            <li>
+              <a href="#conclusions">Conclusions</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+
+      <div class="page-header">
+        <a class="anchor" id="top"></a>
+        <div class="row">
+          <div class="col-lg-5" style="padding: 15px 15px 0 30px;">
+              <img src="img/NCAA-March-Madness.jpg">
+          </div>
+          <div class="col-lg-7">
+            <div class='header-area'>
+                <h1>Predicting March Madness</h1>
+                <p class="lead">Using Machine Learning Techniques</p>
+                <p class="content">
+                  EECS 349 - Winter 2014
+                  <br>
+                  <ul class='content-list'>
+                    <li><a href="mailto:allenzeng2014@u.northwestern.edu">Allen Zeng</a></li>
+                    <li><a href="mailto:richardchang2014@u.northwestern.edu">Rich Chang</a></li>
+                  </ul>
+                </p>
+                <br>
+                <p class="content">
+                  <a class="btn btn-primary" href="files/March_Madness_Report.pdf" target="blank">View Full Report</a></li>
+                  <br>
+                </p>
+                <br><br>
+              </div>
+          </div>
+        </div>
+      </div> <!-- end top -->
+    <div class="">
+      <a class="anchor" id="overview"></a>
+        <div class="row">
+          <div class="col-lg-12 heading">
+            <h1>Overview</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="content">
+              March Madness is a NCAA Division I Basketball tournament that was founded in 1939 and has been played annually since. The tournament traditionally runs from the middle of March to the end of April and features the top 68 teams from around the country.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <p class="content">
+              <br>
+              Filling out a March Madness bracket has been somewhat of an American tradition, with a history of high offers for anyone who can fill out a perfect bracket. In 2012, Fox Sports offered $1 million to anyone who could do it, and for this upcoming season, Warren Buffett offered $1 billion. Sadly, there has been no documented case of a perfect bracket in the history of the tournament.
+            </p>
+          </div>
+        <div class="col-lg-6">
+              <img src="img/bracket.jpg" class="overview-image">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="content">
+              <br>
+                Our goal for this project is to accurately predict a March Madness bracket for the upcoming 2014 tournament. We will use a number of machine learning classifier models and attempt to predict the winning teams by identifying the characteristics that determine a team’s success in the tournament.
+              <br>
+              <br>
+              To construct our bracket, we will ask the following questions in our experiments:    
+                <ul class='content-list'>
+                  <li>
+                    Which are the most important statistics about a team that determine its likelihood to win a game?
+                  </li>
+                  <li>
+                    Which classifiers will give us a model with stronger performance - decision tree, logistic regression, or another classifier?
+                  </li>
+                  <li>
+                    How accurately can we predict the outcome of a game given each team’s season statistics? Is it as least better than chance (50%)? 
+                  </li>
+                </ul>         
+            </p>
+
+          </div>
+        </div>
+    </div> <!-- end overview -->
+
+    <div class="">
+      <a class="anchor" id="data"></a>
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Data</h1>
+             <p class="content">
+              Our dataset consists of information from <a href='http://statsheet.com/mcb' target='blank'>Statsheet’s NCAAB site</a> for the 2012-2013 season. The set contains all 351 NCAAB D1 teams, their conference schedule games (a total of 3207 games), and their season long statistics (54 for each team). The team statistics are a combination of binary, continuous and discrete variables that we are using as a feature set to represent each individual team. A sample of the types of features that we collected include but are not limited to:
+              <div class="row">
+                  <div class="col-lg-6">
+                    <ul class='content-list'>
+                        <li>Total Games</li>
+                        <li>Winning Pct</li>
+                        <li>Possessions Per 40 minutes</li>
+                        <li>Floor Pct</li>
+                        <li>Efficiency</li>
+                        <li>Field Goal Pct</li>
+                        <li>Free Throw Pct</li>
+                      </ul>
+                  </div>
+                  <div class="col-lg-6">
+                    <ul class='content-list'>
+                        <li>Points Per Possessions</li>
+                        <li>Points Per Game</li>
+                        <li>Rebound Pct</li>
+                        <li>Steals</li>
+                        <li>Turnovers</li>
+                        <li>Blocks</li>
+                        <li>Fouls</li>
+                      </ul>
+                  </div>                
+              </div>
+            </p>
+          </div>
+        </div>
+    </div> <!-- end data -->
+
+    <div class="">
+      <a class="anchor" id="experiment"></a>
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Experiment</h1>
+            <p class="content">
+              In order to conduct our experiments, we needed to create instances representing the games that occurred from the data that we collected for the 2012-2013 season. We queried our data to find the season statistics for each team and took the difference of the stats between the respective teams (home team stats - away team stats) before appending the outcome of the game to it. This gave us a numerical representation of a game that we could use as a training example to feed into a classifier model. 
+          </p>
+              <p style ="font-size:14px; text-align:center;">
+                <img src="img/exp_diagram.jpg" class="exp-diagram">
+                <br>
+                Figure 1. Outline of how we constructed our training examples (not all of our features are included in this diagram).
+              </p>
+              <br>
+          <p class="content">
+            To test the accuracy of our models, we used the games from the 2012-2013 March Madness tournament and generated test instances following the same method as with the training examples.
+          </p>
+          <br>
+         </div>
+        </div>
+    </div> <!-- end experiment -->
+
+    <div class="">
+      <a class="anchor" id="results"></a>
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Results and Analysis</h1>
+                        <p style ="font-size:14px; text-align:center;">
+              <img src="img/results.jpg" class="results-diagram">
+              <br>
+              Table 1. The different classifiers we tested and their results.
+            </p>
+            <p class="content">
+              After trying different models, the Naive Bayes classifier had the best percentage on 2013 March Madness tournament, predicting 71.6% of the games correctly. Naive Bayes is an optimal choice for our classifier not only because it had the best percentage, but because all of our features are numeric, the nature of how Naive Bayes is calculated synchronizes with our data. 
+            </p>
+              <br>
+            <p style ="font-size:14px; text-align:center;">
+              <img src="img/bracket-final.png" class="bracket-diagram">
+              <br>
+              Figure 2. How our predicted outcomes performed against the actual 2013 tournament.
+            </p>
+          </div>
+        </div>
+    </div> <!-- end results -->
+
+    <div class="">
+      <a class="anchor" id="conclusions"></a>
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Conclusions</h1>
+            <p class="content">
+              Although 71.6% isn’t a bad percentage for classifiers, it probably won’t be good enough to predict 100% accuracy for a March Madness bracket. After filling out the 2013 bracket, we can see some flaws in our predictor but some merit as well. Our classifier missed some "obvious" calls (higher ranked team vs lower ranked) but performed well in some areas (predicted a few upsets).
+              <br>
+              <br>
+               For future work, we should include some type of measure for how difficult a conference is to weight statistics accordingly. Additionally, if we could include player statistics also, this would probably create better accuracy, as player matchups in basketball are very important.
+            </p>
+          </div>
+        </div>
+    </div> <!-- end conclusions -->
+
+
+
+      <footer class='cust-footer'>
+        <div class="row">
+          <div class="col-lg-12">
+            <p>EECS 349 - Machine Learning W14</p>
+            <p>Built using <a href="http://bootswatch.com/flatly/" target='blank' rel="nofollow">Bootswatch - Flatly</a>.</p>
+
+          </div>
+        </div>
+      </footer>
+
+    </div> <!-- end container -->
+  </body>
+</html>

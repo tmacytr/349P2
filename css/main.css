@@ -1,0 +1,65 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+html,body {
+	height:100%;
+	width:100%;
+	padding-top: 40px;
+}
+
+.heading {
+	/*border-bottom: 1px solid black;*/
+}
+
+a.anchor{
+	display: block; 
+	position: relative; 
+	top: -50px; 
+	visibility: hidden;
+}
+
+.cust-footer {
+	padding-top:20px;
+	border-top: 1px solid black;
+}
+
+.header-area {
+	padding-left:50px;
+}
+
+p.content {
+	font-size: 20px;
+	font-weight: 200;
+}
+
+.content-list {
+	font-size: 20px;
+	font-weight: 200;
+}
+
+.overview-image {
+	height:250px;
+	padding-left: 60px;
+}
+
+.exp-diagram {
+	height:375px;
+}
+
+.bracket-diagram {
+	height:375px;
+	text-align: center;
+}
+
+.results-diagram {
+	height:200px;
+}
+
+
+
+
+
+
+
